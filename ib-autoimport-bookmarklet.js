@@ -4,11 +4,13 @@ else (function(e,a,g,h,f,c,b,d){if(!(f=e.jQuery)||g>f.fn.jquery||h(f)){c=a.creat
 
   var document = top.frames["content"].document;
 
+ /* MODAL CLASS DEFINITION
+  * ====================== */
+
   var Modal = function (element, options) {
     this.options = options
     this.$element = $(element)
       .delegate('[data-dismiss="modal"]', 'click.dismiss.modal', $.proxy(this.hide, this))
-    this.options.remote && this.$element.find('.modal-body').load(this.options.remote)
   }
 
   Modal.prototype = {
@@ -32,8 +34,6 @@ else (function(e,a,g,h,f,c,b,d){if(!(f=e.jQuery)||g>f.fn.jquery||h(f)){c=a.creat
         this.escape()
 
         this.backdrop(function () {
-          var transition = $.support.transition && that.$element.hasClass('fade')
-
           if (!that.$element.parent().length) {
             that.$element.appendTo(document.body) //don't move modals dom position
           }
@@ -41,21 +41,13 @@ else (function(e,a,g,h,f,c,b,d){if(!(f=e.jQuery)||g>f.fn.jquery||h(f)){c=a.creat
           that.$element
             .show()
 
-          if (transition) {
-            that.$element[0].offsetWidth // force reflow
-          }
-
           that.$element
-            .addClass('in')
             .attr('aria-hidden', false)
             .focus()
 
           that.enforceFocus()
 
-          transition ?
-            that.$element.one($.support.transition.end, function () { that.$element.trigger('shown') }) :
-            that.$element.trigger('shown')
-
+          that.$element.trigger('shown')
         })
       }
 
@@ -77,12 +69,9 @@ else (function(e,a,g,h,f,c,b,d){if(!(f=e.jQuery)||g>f.fn.jquery||h(f)){c=a.creat
         $(document).off('focusin.modal')
 
         this.$element
-          .removeClass('in')
           .attr('aria-hidden', true)
 
-        $.support.transition && this.$element.hasClass('fade') ?
-          this.hideWithTransition() :
-          this.hideModal()
+        this.hideModal()
       }
 
     , enforceFocus: function () {
@@ -143,11 +132,9 @@ else (function(e,a,g,h,f,c,b,d){if(!(f=e.jQuery)||g>f.fn.jquery||h(f)){c=a.creat
             this.$backdrop.click($.proxy(this.hide, this))
           }
 
-          this.$backdrop.addClass('in')
           callback()
 
         } else if (!this.isShown && this.$backdrop) {
-          this.$backdrop.removeClass('in')
           this.removeBackdrop()
 
         } else if (callback) {
@@ -178,6 +165,9 @@ else (function(e,a,g,h,f,c,b,d){if(!(f=e.jQuery)||g>f.fn.jquery||h(f)){c=a.creat
   }
 
   $.fn.modal.Constructor = Modal;
+
+ /* BOOKMARKLET CODE
+  * ======================= */
 
   var styleFooter = "padding:14px 15px 15px;margin-bottom:0;text-align:right;background-color:#f5f5f5;border-top:1px solid #ddd;-webkit-border-radius:0 0 6px 6px;-moz-border-radius:0 0 6px 6px;border-radius:0 0 6px 6px;-webkit-box-shadow:inset 0 1px 0 #fff;-moz-box-shadow:inset 0 1px 0 #fff;box-shadow:inset 0 1px 0 #fff;*zoom:1";
 
@@ -221,9 +211,9 @@ else (function(e,a,g,h,f,c,b,d){if(!(f=e.jQuery)||g>f.fn.jquery||h(f)){c=a.creat
       m.load(newReport + ' select[name="accounts"]', function() {
 
         var sel = m.find('select').removeAttr('multiple')
-          .before('<p style="line-height:1em;margin-bottom:6px"><strong>From which subaccount would you like to import trades?</strong></p>');
+          .before('<p style="line-height:1.1em;margin-bottom:8px"><strong>From which subaccount would you like to import trades?</strong></p>');
 
-        m.prepend('<p style="line-height:1em;margin-bottom:6px">Hey, this handy script will generate report templates and a web service token for you to give web apps to allow them to automatically import your trades.</div>')
+        m.prepend('<p style="line-height:1.1em;margin-bottom:10px">Hey, this nifty script will generate report templates and a web service token for you to give web apps to allow them to automatically import your trades.</div>')
         .next().show().find('button:first').on('click', function() {
           if (sel.length) {
             if (sel.val()) {
