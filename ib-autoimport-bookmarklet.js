@@ -205,8 +205,8 @@ else (function(e,a,g,h,f,c,b,d){if(!(f=e.jQuery)||g>f.fn.jquery||h(f)){c=a.creat
     {type: 'POST', url: deliverySettings, data: {generate: 'generate', ip_address: '', stmt_window: 9, whichDiv: 'flex', whichForm: 'F'} },
     function(token) {
 
-      var reportParams = 'cmd=S&outputFormat=TEXT&separator=comma&tcSettings=EXECUTION&textOptions=columnHeaders' +
-          'tradeConfirmsIncluded=symbol&tradeConfirmsIncluded=description&tradeConfirmsIncluded=dateTime&tradeConfirmsIncluded=exchange&tradeConfirmsIncluded=buySell&tradeConfirmsIncluded=quantity&tradeConfirmsIncluded=price&tradeConfirmsIncluded=amount&tradeConfirmsIncluded=commission';
+      var reportParams = 'cmd=S&queryId=&currentQueryName=&outputFormat=Text&separator=Comma&textOptions=columnHeaders&fromDate=&toDate=' +
+          '&tradeConfirmsIncluded=symbol&tradeConfirmsIncluded=description&tradeConfirmsIncluded=dateTime&tradeConfirmsIncluded=exchange&tradeConfirmsIncluded=buySell&tradeConfirmsIncluded=quantity&tradeConfirmsIncluded=price&tradeConfirmsIncluded=amount&tradeConfirmsIncluded=commission&tcSettings=EXECUTION';
 
       m.load(newReport + ' select[name="accounts"]', function() {
 

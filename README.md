@@ -1,5 +1,5 @@
-ib-autoimport-bookmarklet
-=========================
+The IB AutoImport Setup Bookmarklet
+===================================
 
 A bookmarklet script to generate report templates and web service token for apps to auto import trades from Interactive Brokers.
 
